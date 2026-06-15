@@ -1,4 +1,4 @@
-# Companion
+# My Tamagotchi
 
 A cozy pixel-art Tamagotchi companion. Draw your own 32×32 pixel creature, name
 it, and bring it to life. It bobs around a warm little screen, reacts to your
@@ -40,11 +40,7 @@ companion/
 │     └─ storage.js        # best-effort persistence helpers
 ```
 
-## Chat (Claude API)
-
-The chat in the "live" screen calls the Claude API directly from the browser.
-That call needs auth and CORS handling that a bare browser `fetch` won't have on
-its own, so chat gracefully falls back to canned replies when the request
-fails — the rest of the app works fully offline. To enable real replies, route
-the request through a small backend or proxy that attaches your Anthropic API
-key (never ship the key in client-side code).
+## Idea
+- fix text
+- train tamagotchi
+- update "the meadow" with pixel friends
