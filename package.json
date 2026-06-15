@@ -1,0 +1,20 @@
+{
+  "name": "companion",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "A cozy pixel-art Tamagotchi companion you draw, name, and bring to life.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "vite": "^6.0.7"
+  }
+}
