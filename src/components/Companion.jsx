@@ -192,7 +192,7 @@ export default function Companion() {
     const url = canvasRef.current.toDataURL("image/png");
     const nm = name.trim();
     setDrawing(url); setName(nm); setScreen("live");
-    setMessages([{ role: "pet", text: "hi, i'm " + nm + ", lovely to meet you! ♡" }]);
+    setMessages([{ role: "pet", text: "Hi! I'm " + nm + ", lovely to meet you! ♡" }]);
     setTimeout(persist, 0);
   };
 
@@ -457,8 +457,8 @@ export default function Companion() {
         {loaded && screen === "draw" && (
           <div style={{ display: "flex", flexDirection: "column", flex: 1, minHeight: 0, overflowY: "auto" }}>
             <div style={{ padding: "24px 22px 6px", textAlign: "center" }}>
-              <div style={{ fontFamily: display, fontWeight: 700, fontSize: "24px", color: "#4A4038", lineHeight: 1.1 }}>draw your friend</div>
-              <div style={{ fontSize: "13px", color: "#9B8E7E", marginTop: "4px", fontWeight: 600 }}>tap &amp; drag to paint pixels &mdash; keep it blocky &#9825;</div>
+              <div style={{ fontFamily: display, fontWeight: 700, fontSize: "24px", color: "#4A4038", lineHeight: 1.1 }}>draw your tamagotchi</div>
+              <div style={{ fontSize: "13px", color: "#9B8E7E", marginTop: "4px", fontWeight: 600 }}>tap &amp; drag to paint pixels, keep it pixelated &#9825;</div>
             </div>
             <div style={{ margin: "10px 22px 0", borderRadius: "18px", overflow: "hidden", background: "#FBF7EE", boxShadow: "inset 0 0 0 1.5px #EBDEC9, inset 0 3px 12px rgba(74,64,56,.05)", position: "relative", aspectRatio: "1/1" }}>
               <canvas ref={canvasRef} width={32} height={32} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", touchAction: "none", cursor: "crosshair", imageRendering: "pixelated" }} />
@@ -524,32 +524,16 @@ export default function Companion() {
             <div style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "17px 20px 4px" }}>
               <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
                 <span style={{ fontFamily: display, fontWeight: 700, fontSize: "20px", color: "#4A4038", lineHeight: 1 }}>{name}</span>
-                <span style={{ fontSize: "11px", color: "#A89A88", fontWeight: 700, letterSpacing: ".05em", textTransform: "uppercase" }}>your companion</span>
+                <span style={{ fontSize: "11px", color: "#A89A88", fontWeight: 700, letterSpacing: ".05em", textTransform: "uppercase" }}>your tamagotchi</span>
               </div>
               <div style={{ display: "flex", alignItems: "center", gap: "9px" }}>
-                <button className="tg-icon-btn" onClick={startOver} title="draw a new friend" style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "30px", height: "30px", border: "none", borderRadius: "50%", background: "rgba(255,250,242,.7)", color: "#9B8E7E", cursor: "pointer" }}>
+                <button className="tg-icon-btn" onClick={startOver} title="draw your tamagotchi" style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "30px", height: "30px", border: "none", borderRadius: "50%", background: "rgba(255,250,242,.7)", color: "#9B8E7E", cursor: "pointer" }}>
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7" /><path d="M3 4.5V9h4.5" /></svg>
                 </button>
-                <div style={{ display: "flex", alignItems: "center", gap: "7px", background: "rgba(255,250,242,.7)", borderRadius: "999px", padding: "7px 13px" }}>
-                  <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: m.color }} />
-                  <span style={{ fontSize: "12px", fontWeight: 700, color: "#6B5E50" }}>{m.label}</span>
-                </div>
+                <button className="tg-icon-btn" onClick={enterParadise} title={"take " + name + " to the meadow"} style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "30px", height: "30px", border: "none", borderRadius: "50%", background: "rgba(234,240,220,.85)", color: "#5E6E4E", cursor: "pointer" }}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 21c0-5 0-8 0-8" /><path d="M12 13c-1-3-3.5-4-6-4 0 3 2 5 6 5z" /><path d="M12 11c1-3 3.5-4.5 6-4.5 0 3.5-2.5 5.5-6 5.5z" /></svg>
+                </button>
               </div>
-            </div>
-
-            <div style={{ position: "relative", display: "flex", gap: "18px", padding: "10px 22px 2px", justifyContent: "center" }}>
-              {[
-                { c: "#C2876B", pct: Math.round(fullness) },
-                { c: "#C98B86", pct: Math.round(happiness) },
-                { c: "#93A285", pct: Math.round(energy) },
-              ].map((b, i) => (
-                <div key={i} style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-                  <span style={{ width: "7px", height: "7px", borderRadius: "2px", background: b.c }} />
-                  <div style={{ width: "46px", height: "7px", borderRadius: "99px", background: "rgba(74,64,56,.1)", overflow: "hidden" }}>
-                    <div style={{ height: "100%", width: b.pct + "%", background: b.c, borderRadius: "99px", transition: "width .4s ease" }} />
-                  </div>
-                </div>
-              ))}
             </div>
 
             <div style={{ position: "relative", flex: 1, minHeight: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "0 20px" }}>
@@ -588,12 +572,6 @@ export default function Companion() {
               </div>
             </div>
 
-            <div style={{ position: "relative", display: "flex", justifyContent: "center", padding: "2px 16px 0" }}>
-              <button className="tg-meadow-btn" onClick={enterParadise} style={{ display: "flex", alignItems: "center", gap: "8px", border: "none", background: "linear-gradient(180deg,#EAF0DC,#DCE7C8)", color: "#5E6E4E", fontWeight: 800, fontSize: "13px", letterSpacing: ".01em", padding: "10px 20px", borderRadius: "999px", cursor: "pointer", boxShadow: "0 4px 14px rgba(110,120,80,.22), 0 1px 0 #fff inset", transition: "transform .15s" }}>
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 21c0-5 0-8 0-8" /><path d="M12 13c-1-3-3.5-4-6-4 0 3 2 5 6 5z" /><path d="M12 11c1-3 3.5-4.5 6-4.5 0 3.5-2.5 5.5-6 5.5z" /></svg>
-                take {name} to the meadow
-              </button>
-            </div>
             <div style={{ position: "relative", display: "flex", gap: "9px", padding: "12px 16px 16px", background: "rgba(247,240,225,.72)", borderTop: "1px solid rgba(239,228,210,.8)", marginTop: "8px" }}>
               <input value={input} onChange={(e) => setInput(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); send(); } }} placeholder={"say something to " + (name || "your friend") + "…"}
                 style={{ flex: 1, border: "none", background: "#fff", borderRadius: "15px", padding: "12px 16px", fontSize: "14px", fontWeight: 500, color: "#4A4038", outline: "none", boxShadow: "inset 0 0 0 1.5px #EADDC8", fontFamily: font }} />
